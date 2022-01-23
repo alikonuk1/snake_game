@@ -62,14 +62,20 @@ class SnakeGame:
                 quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    self.direction = Direction.LEFT
+                    if self.direction != Direction.RIGHT:
+                        self.direction = Direction.LEFT
                 elif event.key == pygame.K_RIGHT:
-                    self.direction = Direction.RIGHT
+                    if self.direction != Direction.LEFT:    
+                        self.direction = Direction.RIGHT
                 elif event.key == pygame.K_UP:
-                    self.direction = Direction.UP
+                    if self.direction != Direction.DOWN:    
+                        self.direction = Direction.UP
                 elif event.key == pygame.K_DOWN:
-                    self.direction = Direction.DOWN
-        
+                    if self.direction != Direction.UP:    
+                        self.direction = Direction.DOWN
+                break
+                
+                
         # 2. move
         self._move(self.direction) # update the head
         self.snake.insert(0, self.head)
